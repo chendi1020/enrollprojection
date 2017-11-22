@@ -1,0 +1,11 @@
+name: enrollmentproject
+title: enrollmentproject
+account: msuopb
+server: shinyapps.io
+appId: 239050
+bundleId: 1091141
+url: https://msuopb.shinyapps.io/enrollmentproject/
+when: 1511384349.08249
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: EnrlProj.R

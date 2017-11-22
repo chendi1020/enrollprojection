@@ -1,0 +1,11 @@
+name: enrollmentprojection
+title: EnrollmentProjection
+account: msuopb
+server: shinyapps.io
+appId: 239044
+bundleId: 1091134
+url: https://msuopb.shinyapps.io/enrollmentprojection/
+when: 1511384122.70985
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: EnrlProj.R
