@@ -19,7 +19,7 @@ shinyServer(function(input, output) {
                 
                 #FS18
                 
-                for (m in 1:input$outyr){
+                for (m in 1:as.numeric( input$outyr) ){
                         proj <- prjiterate(dset=proj,
                                            w1sp=input$wsp1,w2sp=input$wsp2, w3sp=input$wsp3, w1f=input$wfa1,
                                            w2f=input$wfa2, w3f=input$wfa3, 
@@ -59,7 +59,7 @@ shinyServer(function(input, output) {
         })
         
         output$tb <- DT::renderDataTable({
-                agg <- datagg()%>% filter(Fterm>=1054)%>% mutate(Termcode= paste0(Termcode,'-', predterm))
+                agg <- datagg()%>% mutate(maxterm=max(Fterm))%>% filter(Fterm>=maxterm-120)
                 if (input$breakdown =='class level'){
                         agg<- dcast(agg, classlvl ~ Termcode, value.var = 'headcount')
                 }
@@ -67,7 +67,18 @@ shinyServer(function(input, output) {
                agg<- dcast(agg, lvl ~ Termcode, value.var = 'headcount')
                 }
                 
-                datatable(agg,options = list(dom = 't'), rownames= FALSE) 
+                
+                      t<-  datatable(agg, extensions = 'Responsive',options = list(dom = 't'), rownames= FALSE) 
+                      
+                      for (i in 1:as.numeric( input$outyr)){
+                              t<- t%>% formatStyle(names(agg)[14+i- as.numeric( input$outyr) ],   fontWeight = 'bold', color = 'green'
+                                                   )  
+                              
+                      }
+                    
+                t
+                     
+             
                         
         })
         
