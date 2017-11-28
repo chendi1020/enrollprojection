@@ -76,8 +76,11 @@ shinyServer(function(input, output) {
                               
                       }
                     
-                t
-                     
+                 for (k in names(agg)[-1]){
+                        t<- t%>% formatCurrency(columns = k, currency = "", interval = 3, mark = ",", digit=0)
+                 }     
+                
+                     t
              
                         
         })
