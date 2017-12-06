@@ -1,12 +1,27 @@
 prjiterate <- function(dset, w1sp, w2sp, w3sp, w1f,w2f, w3f, ftdcu.1,tran.1, grad.1, sprgad.1){
         #reweight
+        if (w1sp==0 & w2sp==0 & w3sp==0){
+                w1spr <- 1/3
+                w2spr <- 1/3
+                w3spr <- 1/3
+        }
+        else {
         w1spr <- w1sp/( w1sp+ w2sp+ w3sp)
         w2spr <- w2sp/( w1sp+ w2sp+ w3sp)
         w3spr <- w3sp/( w1sp+ w2sp+ w3sp)
+        }
         
-        w1fr <- w1f/(w1f+w2f+w3f)
-        w2fr <- w2f/(w1f+w2f+w3f)
-        w3fr <- w3f/(w1f+w2f+w3f)
+        if (w1f==0 & w2f==0 & w3f==0) {
+                w1fr <- 1/3
+                w2fr <- 1/3
+                w3fr <- 1/3
+        }
+        else {
+                w1fr <- w1f/(w1f+w2f+w3f)
+                w2fr <- w2f/(w1f+w2f+w3f)
+                w3fr <- w3f/(w1f+w2f+w3f)     
+        }
+        
         
         #get the retention percent from last 3 terms
         for (k1 in names(dset)[! names(dset) %in% c('Fterm','classlvl.x','cnt.x','cnt.y.x','cnt.y.y')]){
